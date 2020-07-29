@@ -1,2 +1,2 @@
-# openstack
-manual installation of openstack (ussuri version)
+# Project openstack
+Manual installation of openstack (ussuri version)
