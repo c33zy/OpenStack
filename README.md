@@ -29,7 +29,7 @@ Your computer crashed? Try sending a
     end
     
     
-    | Col1         | Col2     | Col3          |
+| Col1         | Col2     | Col3          |
 | :----------- | :------: | ------------: |
 | Left-aligned | Centered | Right-aligned |
 | blah         | blah     | blah          |
