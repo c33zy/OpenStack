@@ -11,6 +11,13 @@ All the documentation has been made with root rights, all commands starting with
 - - -
 ****************
 
+This installation will be carried out on 03 machines. A controller, a compute (to execute the instances) and a storage machine. I would like to remind that this is a minimal installation in a test environment to simulate the operation of the cloud.
+
+| hostname     | Ram      | vCPU          | interface1     | interface2| Disque        |  
+| :----------- | :------: | ------------: | -------------  | :---------:| ------------:|
+| controller1  | 8 go     | 2             |  192.168.10.210| Centered  | Right-aligned |
+| blah         | blah     | blah          |  blah          | blah      | blah          |
+
 ```ruby
 ceci est du code 
 ok c bon 
