@@ -10,3 +10,8 @@ All the documentation has been made with root rights, all commands starting with
 ---
 - - -
 ****************
+
+```ruby
+ceci est du code 
+ok c bon 
+```
