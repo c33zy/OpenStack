@@ -13,10 +13,13 @@ All the documentation has been made with root rights, all commands starting with
 
 This installation will be carried out on 03 machines. A controller, a compute (to execute the instances) and a storage machine. I would like to remind that this is a minimal installation in a test environment to simulate the operation of the cloud.
 
-| hostname     | Ram      | vCPU          | interface1     | interface2| Disque        |  
-| :----------- | :------: | ------------: | -------------  | :---------:| ------------:|
-| controller1  | 8 go     | 2             |  192.168.10.210| Centered  | Right-aligned |
-| blah         | blah     | blah          |  blah          | blah      | blah          |
+| hostname     | Ram      | vCPU          | interface1     | interface2   | Disque        |  
+| :----------- | :------: | ------------: | -------------  | :---------:  | ------------: |
+| controller1  | 8 go     | 2             |  192.168.10.210| 10.10.10.194 | 55            |
+| compute      | 8go      | 2             |  192.168.10.209| 10.10.10.193 | 25            |
+| storage1     | 2 go     | 1             |  192.168.10.212| 10.10.10.196 | 50            |
+
+I leave it up to you to configure the ip addresses on the different machines and also to configure the name resolution between the machines.  
 
 ```ruby
 ceci est du code 
