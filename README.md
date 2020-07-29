@@ -15,3 +15,15 @@ All the documentation has been made with root rights, all commands starting with
 ceci est du code 
 ok c bon 
 ```
+
+Your computer crashed? Try sending a
+<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd>
+
+<foo@bar.com>
+
+    This is code
+    So is this
+    
+    my_array.each do |item|
+        puts item
+    end
