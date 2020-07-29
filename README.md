@@ -27,3 +27,12 @@ Your computer crashed? Try sending a
     my_array.each do |item|
         puts item
     end
+    
+    
+    | Col1         | Col2     | Col3          |
+| :----------- | :------: | ------------: |
+| Left-aligned | Centered | Right-aligned |
+| blah         | blah     | blah          |
+
+
+
