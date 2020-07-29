@@ -27,9 +27,15 @@ One of the prerequisites to have a functional OpenStack is to have machines with
 On all machines you have to install the chrony package and then you have to replace in /etc/chrony/chrony.conf server 0.ubuntu.pool.ntp.org by ```server controller``` 
 on all except the controller which remains unchanged. 
 
-
 ```
   #sudo apt install chrony
+```
+### packages installation 
+```
+# apt install software-properties-common
+# add-apt-repository cloud-archive:stein
+# apt update && apt dist-upgrade
+# apt install python3-openstackclient
 ```
 
 Your computer crashed? Try sending a
