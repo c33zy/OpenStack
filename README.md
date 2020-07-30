@@ -41,6 +41,82 @@ on all except the controller which remains unchanged.
 ### installation of the database on the controller
 we get started by maria db 
 
+```
+# apt install mariadb-server python-pymysql
+```
+Let's create and edit the **/etc/mysql/mariadb.conf.d/99-openstack.cnf**  file and then complete the following actions:
+
+Create a [mysqld] section, and set the bind-address key to the management IP address of the controller node to enable access by other nodes via the management network. Set additional keys to enable useful options and the UTF-8 character set:
+```
+[mysqld]
+bind-address = 10.0.0.11
+
+default-storage-engine = innodb
+innodb_file_per_table = on
+max_connections = 4096
+collation-server = utf8_general_ci
+character-set-server = utf8
+```
+Restart the database service:
+```
+# service mysql restart
+```
+
+### Install and configure components of rabbitmq on controller 
+Install the package:
+```
+# apt install rabbitmq-server
+```
+Add the openstack user:
+```
+# rabbitmqctl add_user openstack RABBIT_PASS
+```
+Permit configuration, write, and read access for the openstack user:
+```
+# rabbitmqctl set_permissions openstack ".*" ".*" ".*"
+```
+
+### Install and configure components of memcached on controller 
+Install the packages:
+```
+# apt install memcached python-memcache
+```
+Edit the ```/etc/memcached.conf```  file and configure the service to use the management IP address of the controller node. This is to enable access by other nodes via the management network:
+```
+-l 10.0.0.11
+ ```
+Restart the Memcached service:
+```
+# service memcached restart
+```
+
+### install and configure components of etcd on controller 
+```
+# apt install etcd
+```
+
+Edit the ```/etc/default/etcd ``` file and set the ETCD_INITIAL_CLUSTER, ETCD_INITIAL_ADVERTISE_PEER_URLS, ETCD_ADVERTISE_CLIENT_URLS, ETCD_LISTEN_CLIENT_URLS to the management IP address of the controller node to enable access by other nodes via the management network:
+
+```
+ETCD_NAME="controller1"
+ETCD_DATA_DIR="/var/lib/etcd"
+ETCD_INITIAL_CLUSTER_STATE="new"
+ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster-01"
+ETCD_INITIAL_CLUSTER="controller1=http://192.168.10.210:2380"
+ETCD_INITIAL_ADVERTISE_PEER_URLS="http://192.168.10.210:2380"
+ETCD_ADVERTISE_CLIENT_URLS="http://192.168.10.210:2379"
+ETCD_LISTEN_PEER_URLS="http://0.0.0.0:2380"
+ETCD_LISTEN_CLIENT_URLS="http://192.168.10.210:2379"
+```
+
+
+
+
+
+
+
+
+
 
 
 
