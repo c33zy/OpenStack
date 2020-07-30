@@ -122,9 +122,12 @@ Use the database access client to connect to the database server as the root use
 ```
 Create the keystone database:
 
-```MariaDB [(none)]> CREATE DATABASE keystone;
 ```
+MariaDB [(none)]> CREATE DATABASE keystone;
+```
+
 Grant proper access to the keystone database:
+
 ```
 MariaDB [(none)]> GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost' \
 IDENTIFIED BY 'KEYSTONE_DBPASS';
@@ -134,37 +137,46 @@ IDENTIFIED BY 'KEYSTONE_DBPASS';
 Replace KEYSTONE_DBPASS with a suitable password.
 After that ;
 Run the following command to install the packages:
+
 ```
 # apt install keystone
 ```
-Edit the ```/etc/keystone/keystone.conf ``` file and complete the following actions:
+
+Edit the  ```/etc/keystone/keystone.conf ``` file and complete the following actions:
 
 In the [database] section, configure database access:
+
 ```
 [database]
-# ...
 connection = mysql+pymysql://keystone:KEYSTONE_DBPASS@controller/keystone
+
 ```
 Replace KEYSTONE_DBPASS with the password you chose for the database.
 
 Comment out or remove any other connection options in the [database] section.
 
 In the [token] section, configure the Fernet token provider:
+
 ```
 [token]
 provider = fernet
 ```
+
 Populate the Identity service database:
 ```
 # su -s /bin/sh -c "keystone-manage db_sync" keystone
 ```
 
 Initialize Fernet key repositories:
+
+
 ```
 # keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone
 # keystone-manage credential_setup --keystone-user keystone --keystone-group keystone
 ```
+
 Bootstrap the Identity service:
+
 ```
 # keystone-manage bootstrap --bootstrap-password ADMIN_PASS \
   --bootstrap-admin-url http://controller:5000/v3/ \
@@ -172,12 +184,16 @@ Bootstrap the Identity service:
   --bootstrap-public-url http://controller:5000/v3/ \
   --bootstrap-region-id RegionOne
   ```
+
 Replace ADMIN_PASS with a suitable password for an administrative user.
 
-Edit the ```/etc/apache2/apache2.conf ```file and configure the ServerName option to reference the controller node:
+Edit the ```/etc/apache2/apache2.conf ``` file and configure the ServerName option to reference the controller node:
+
+
 ```
 ServerName controller
 ```
+
 The ServerName entry will need to be added if it does not already exist.
 
 Restart the Apache service:
@@ -306,26 +322,33 @@ $ openstack endpoint create --region RegionOne \
 $ openstack endpoint create --region RegionOne \
   image internal http://controller1:9292
 ```
+
 ```
 $ openstack endpoint create --region RegionOne \
   image admin http://controller1:9292
 ```
 
 Install and configure components¶
+
 ```
 # apt install glance
 ```
+
 Edit the /etc/glance/glance-api.conf file and complete the following actions:
 
 In the [database] section, configure database access:
+
 ```
 [database]
 # ...
 connection = mysql+pymysql://glance:GLANCE_DBPASS@controller/glance
 ```
+
 Replace GLANCE_DBPASS with the password you chose for the Image service database.
 
 In the [keystone_authtoken], [paste_deploy] and [glance_store] sections, configure Identity service access:
+
+
 ```
 [keystone_authtoken]
 # ...
@@ -350,15 +373,20 @@ stores = file,http
 default_store = file
 filesystem_store_datadir = /var/lib/glance/images/
 ```
+
 Populate the Image service database:
+
 ```
 # su -s /bin/sh -c "glance-manage db_sync" glance
  ```
  
 Restart the Image services:
+
+
 ```
 # service glance-api restart
 ```
+
 ### Install and configure of other services 
   
  Glance :  For this go to <https://docs.openstack.org/placement/ussuri/install/>
@@ -368,6 +396,4 @@ Same thing  for Nova , refere to offical guide  <https://docs.openstack.org/nova
 we also need to install and configure :  Horizon (dashboard service) , Neutron (Networking service) and cinder (block storage) 
 I used the official openstack guide, so I refer you there <https://docs.openstack.org/ussuri/install/>
 I have to notify that you have to adapt the information used (such as ip addresses, machine names) to your needs.   
-
-
 
