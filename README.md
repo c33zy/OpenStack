@@ -91,11 +91,12 @@ Restart the Memcached service:
 ```
 
 ### install and configure components of etcd on controller 
+
 ```
 # apt install etcd
 ```
 
-Edit the ```/etc/default/etcd ``` file and set the ETCD_INITIAL_CLUSTER, ETCD_INITIAL_ADVERTISE_PEER_URLS, ETCD_ADVERTISE_CLIENT_URLS, ETCD_LISTEN_CLIENT_URLS to the management IP address of the controller node to enable access by other nodes via the management network:
+Edit the  ```/etc/default/etcd ``` file
 
 ```
 ETCD_NAME="controller1"
@@ -120,6 +121,7 @@ Use the database access client to connect to the database server as the root use
 ```
 # mysql
 ```
+
 Create the keystone database:
 
 ```
@@ -134,6 +136,7 @@ IDENTIFIED BY 'KEYSTONE_DBPASS';
 MariaDB [(none)]> GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' \
 IDENTIFIED BY 'KEYSTONE_DBPASS';
 ```
+
 Replace KEYSTONE_DBPASS with a suitable password.
 After that ;
 Run the following command to install the packages:
@@ -149,8 +152,8 @@ In the [database] section, configure database access:
 ```
 [database]
 connection = mysql+pymysql://keystone:KEYSTONE_DBPASS@controller/keystone
-
 ```
+
 Replace KEYSTONE_DBPASS with the password you chose for the database.
 
 Comment out or remove any other connection options in the [database] section.
@@ -163,6 +166,7 @@ provider = fernet
 ```
 
 Populate the Identity service database:
+
 ```
 # su -s /bin/sh -c "keystone-manage db_sync" keystone
 ```
