@@ -10,7 +10,7 @@ All the documentation has been made with root rights, all commands starting with
 ---
 - - -
 ****************
-## topology
+## Topology
 This installation will be carried out on 03 machines. A controller, a compute (to execute the instances) and a storage machine. I would like to remind that this is a minimal installation in a test environment to simulate the operation of the cloud.
 
 | hostname     | Ram      | vCPU          | interface1     | interface2   | Disque        |  
@@ -20,7 +20,7 @@ This installation will be carried out on 03 machines. A controller, a compute (t
 | storage1     | 2 go     | 1             |  192.168.10.212| 10.10.10.196 | 50            |
 
 I leave it up to you to configure the ip addresses on the different machines and also to configure the name resolution between the machines.  
-## installation 
+## Installation 
 ### Time server 
 One of the prerequisites to have a functional OpenStack is to have machines with the same time and for this we will install a time server (ntp or chrony) on the controller and define the other machines as clients. 
 
@@ -28,7 +28,8 @@ On all machines you have to install the chrony package and then you have to repl
 on all except the controller which remains unchanged. 
 
 ```
-  #sudo apt install chrony
+#sudo apt install chrony
+
 ```
 ### packages installation 
 ```
@@ -37,6 +38,12 @@ on all except the controller which remains unchanged.
 # apt update && apt dist-upgrade
 # apt install python3-openstackclient
 ```
+### installation of the database on the controller
+we get started by maria db 
+
+
+
+
 
 Your computer crashed? Try sending a
 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd>
