@@ -360,68 +360,19 @@ Restart the Image services:
 # service glance-api restart
 ```
 ### Install and configure placement 
-  For this go to <https://docs.openstack.org/placement/ussuri/install/>
+  
+ For this go to <https://docs.openstack.org/placement/ussuri/install/>
 
+### Install and configure NOVA 
+Same thing , refere to offical guide  <https://docs.openstack.org/nova/ussuri/install/controller-install-ubuntu.html>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+we also need to install and configure :  Horizon (dashboard service) , Neutron (Networking service) and cinder (block storage) 
+I used the official openstack guide, so I refer you there <https://docs.openstack.org/ussuri/install/>
+I have to notify that you have to adapt the information used (such as ip addresses, machine names) to your needs.   
 
 Your computer crashed? Try sending a
 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd>
 
-<foo@bar.com>
-
-    This is code
-    So is this
-    
-    my_array.each do |item|
-        puts item
-    end
-    
-    
-| Col1         | Col2     | Col3          |
-| :----------- | :------: | ------------: |
-| Left-aligned | Centered | Right-aligned |
-| blah         | blah     | blah          |
 
 
 
